@@ -19,19 +19,20 @@ public class Main {
         boolean playing = true;
 
         System.out.println("Welcome to the zombie apocalypse!");
+        System.out.println("You were having a self study session alone when a zombie appeared in your classroom!");
+        System.out.println("If you would like to view your personal statistics later on in the game, enter the letter s.");
         GAME:
         while (playing) {
             int zombieHealth = (int) (maxZombieHealth * (userAge/100));
-            System.out.println("A zombie appeared in your classroom!");
             while (!(zombieDead(zombieHealth))) {
                 playerStats(health, numArrows, numMedicine);
-                System.out.println("What would you like to do? If you would like to view your personal statistics later on in the game, enter the letter s.");
+                System.out.println("What would you like to do?");
                 String action = input.next();
                 if (action.equals("s")) {
                     System.out.println(playerStats(health, numArrows, numMedicine));
                 }
                 else if (action.contains("run")) {
-                    System.out.println("You spin around frantically and run away from the zombie.");
+                    System.out.println("You spin around frantically and run away from the zombie. It chases after you.");
                     continue GAME;
                 }
                 else if (action.contains("attack")) {
@@ -42,7 +43,7 @@ public class Main {
                     health = health(health, damageTaken);
                     numArrows = numArrows(numArrows);
 
-                    System.out.println("You hit the zombie with an arrow.");
+                    System.out.println("You shoot the zombie with an arrow.");
                     System.out.println("Damage received = " + damageTaken);
                     System.out.println("Damage caused = " + damageCaused);
                     System.out.println("Current zombie health = " + zombieHealth);
@@ -82,10 +83,9 @@ public class Main {
                 System.out.println("You now have" + numMedicine + "healing potion(s)");
             }
             System.out.println("What would you like to do?");
-            String choice = input.nextLine();
-            while (!choice.contains("fight") && !choice.contains("kill") && !choice.contains("leave") && !choice.contains("exit")) {
+            String choice = input.next();
+            if (!choice.contains("fight") && !choice.contains("kill") && !choice.contains("leave") && !choice.contains("exit")) {
                 System.out.println("Sorry, I don't understand what you're saying.");
-                choice = input.nextLine();
             }
 
             if (choice.contains("fight") || choice.contains("kill")) {
