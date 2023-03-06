@@ -70,6 +70,7 @@ public class Main {
                 }
                 else {
                     System.out.println("Sorry, I don't understand what you're saying.");
+                    action = input.next();
                 }
             }
             if (health < 1) {
