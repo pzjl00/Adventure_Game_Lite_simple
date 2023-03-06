@@ -7,7 +7,7 @@ public class Main {
         //Game variables
         int maxZombieHealth = 100;
         //player information
-        System.out.println("How old are you?");
+        System.out.println("How old are you? (feel free to make this up)");
         double userAge = input.nextInt();
         //player variables
         int health = 100;
@@ -22,11 +22,11 @@ public class Main {
         GAME:
         while (playing) {
             int zombieHealth = (int) (maxZombieHealth * (userAge/100));
-            System.out.println("A zombie appeared in your classroom! \n");
-            while (zombieHealth > 0) {
+            System.out.println("A zombie appeared in your classroom!");
+            while (!(zombieDead(zombieHealth))) {
                 playerStats(health, numArrows, numMedicine);
                 System.out.println("What would you like to do? If you would like to view your personal statistics later on in the game, enter the letter s.");
-                String action = input.nextLine();
+                String action = input.next();
                 if (action.equals("s")) {
                     System.out.println(playerStats(health, numArrows, numMedicine));
                 }
@@ -49,6 +49,11 @@ public class Main {
 
                     if (health <= 0) {
                         System.out.println("Unfortunately, the zombie has fatally injured your before you could kill it.");
+                        break;
+                    }
+                    if ((noArrows(numArrows))) {
+                        System.out.println("Oh no, you have run out of arrows! You watch in horror as the zombie pounces at you. This becomes your last memory.");
+                        health = -1;
                         break;
                     }
                 }
@@ -98,6 +103,9 @@ public class Main {
     public static String playerStats (int health, int numArrows, int numMedicine) {
         return "Your health: " + health + "\nYou have " + numMedicine + " healing potions." + " Your weapon is a bow. You currently have " + numArrows + " arrows.";
     }
+    public static boolean zombieDead(int zombieHealth) {
+        return zombieHealth < 0;
+    }
     public static int medicineEffect(int health, int medicineHeal) {
         return health + medicineHeal;
     }
@@ -110,6 +118,10 @@ public class Main {
     }
     public static int numArrows(int numArrows) {
         return numArrows - 1;
+    }
+    public static boolean noArrows(int numArrows) {
+        boolean noArrows = false;
+        return numArrows < 0;
     }
     public static int zombieHealth(int zombieHealth, int damageCaused) {
         return zombieHealth - damageCaused;
