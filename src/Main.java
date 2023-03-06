@@ -80,16 +80,18 @@ public class Main {
             System.out.println("Your remaining health: " + health);
             if (chanceMedicine >= 20) {
                 medicine(numMedicine);
-                System.out.println("You now have" + numMedicine + "healing potion(s)");
+                System.out.println("You now have " + numMedicine + " healing potion(s)");
             }
             System.out.println("What would you like to do?");
             String choice = input.next();
             if (!choice.contains("fight") && !choice.contains("kill") && !choice.contains("leave") && !choice.contains("exit")) {
                 System.out.println("Sorry, I don't understand what you're saying.");
+                choice = input.next();
             }
 
             if (choice.contains("fight") || choice.contains("kill")) {
-                System.out.println("You eagerly go to the corridor to find more zombies.");
+                System.out.println("You eagerly go to the corridor to find more zombies. Soon, another zombie appears in the classroom you enter.");
+                zombieHealth = 100;
             }
             else if(choice.contains("leave") || choice.contains("exit")) {
                 System.out.println("You exit the school victorious from combat.");
