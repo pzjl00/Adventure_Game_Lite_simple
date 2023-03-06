@@ -20,7 +20,7 @@ public class Main {
 
         System.out.println("Welcome to the zombie apocalypse!");
         System.out.println("You were having a self study session alone when a zombie appeared in your classroom!");
-        System.out.println("If you would like to view your personal statistics later on in the game, enter the letter s.");
+        System.out.println("If you would like to view your personal statistics later on in the game, enter the letter s. Please also note that all commands in this game contain one word only.");
         GAME:
         while (playing) {
             int zombieHealth = (int) (maxZombieHealth * (userAge/100));
@@ -58,7 +58,7 @@ public class Main {
                         break;
                     }
                 }
-                else if ((action.equals("drink healing potion")) || (action.equals("drink potion"))) {
+                else if (action.equals("drink")) {
                     if(numMedicine > 0) {
                         health = (medicineEffect(health, medicineHeal));
                         numMedicine --;
