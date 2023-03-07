@@ -7,7 +7,7 @@ public class Main {
         //Game variables
         int maxZombieHealth = 100;
         //player information
-        System.out.println("How old are you? (feel free to make this up)");
+        System.out.println("Enter a random number that is a positive integer");
         double userAge = input.nextInt();
         //player variables
         int health = 100;
@@ -35,7 +35,7 @@ public class Main {
                     System.out.println("You spin around frantically and run away from the zombie. It chases after you.");
                     continue GAME;
                 }
-                else if (action.contains("attack")) {
+                else if (action.contains("attack") || action.contains("shoot")) {
                     int damageCaused = (int)damageCaused(userAge);
                     int damageTaken = (int)userAge - 5;
 
@@ -53,7 +53,7 @@ public class Main {
                         break;
                     }
                     if ((noArrows(numArrows))) {
-                        System.out.println("Oh no, you have run out of arrows! You watch in horror as the zombie pounces at you. This becomes your last memory.");
+                        System.out.println("Oh no, you have run out of arrows! You watch in horror as the zombie pounces at you.");
                         health = -1;
                         break;
                     }
@@ -70,7 +70,6 @@ public class Main {
                 }
                 else {
                     System.out.println("Sorry, I don't understand what you're saying.");
-                    action = input.next();
                 }
             }
             if (health < 1) {
@@ -83,7 +82,7 @@ public class Main {
                 medicine(numMedicine);
                 System.out.println("You now have " + numMedicine + " healing potion(s)");
             }
-            System.out.println("What would you like to do?");
+            System.out.println("Would you like to fight or leave?");
             String choice = input.next();
             if (!choice.contains("fight") && !choice.contains("kill") && !choice.contains("leave") && !choice.contains("exit")) {
                 System.out.println("Sorry, I don't understand what you're saying.");
@@ -99,8 +98,12 @@ public class Main {
                 break;
             }
         }
+        input.close();
     }
     public static int medicineChance(int age) {
+        if (age % 2!= 0) {
+            return (age+1)/2;
+        }
         return (age/2);
     }
     public static String playerStats (int health, int numArrows, int numMedicine) {
